@@ -1,0 +1,149 @@
+﻿{
+  "delay": 15000,
+  "cacheUpdateDelay": 7,
+  "debug": true,
+  "enabled": true,
+  "errorPercent": 70,
+  "removeStringsFromTitle": [ "[ANY]", "[STRING]", "[OR]", "[PREFIX]", "(YOU)", "(SPECIFY)" ],
+  "ignoredGames": [ "Any", "Game", "You", "Specify" ],
+  "services": [
+    {
+      "type": "announce",
+      "name": "discord",
+      "token": "-webhook token here-",
+      "id": 12345
+    },
+    {
+      "type": "announce",
+      "name": "vk",
+      "token": "-auth token here-",
+      "id": 12345
+    },
+    {
+      "type": "stream",
+      "name": "twitch",
+      "id": "-api token here-"
+    },
+    {
+      "type": "media",
+      "name": "giantbomb",
+      "token": "-token here-"
+    },
+    {
+      "type": "media",
+      "name": "tmdb",
+      "token": "-token here-"
+    }
+  ],
+  "statistics_webhooks": [
+    "http://your-site.com/webhook-path"
+  ],
+  "channels": [
+    {
+      "channel_id": 1,
+      "channel": "channel_1",
+      "type": "game",
+      "enabled": true,
+      "liveWaitDelay": 15000,
+      "announce": [
+        {
+          "type": "discord",
+          "enabled": true,
+          "useRandomPoster": true,
+          "message": {
+            "prepend": "@everyone ",
+            "append": "— <https://your-site.com/stream/>"
+          }
+        },
+        {
+          "type": "vk",
+          "enabled": true,
+          "useRandomPoster": true,
+          "removeOldPosts": true,
+          "removeCommentedPosts": false,
+          "message": {
+            "prepend": "",
+            "append": "\n\nhttps://your-site.com/stream/",
+            "attachments": [ "https://your-site.com/stream/" ]
+          }
+        }
+      ],
+      "stream": [
+        {
+          "type": "twitch",
+          "enabled": true,
+          "primary": true,
+          "channel": 12345
+        },
+        {
+          "type": "cybergame",
+          "enabled": true,
+          "channel": "your_channel"
+        },
+        {
+          "type": "goodgame",
+          "enabled": true,
+          "channel": "your_channel"
+        },
+        {
+          "type": "hitbox",
+          "enabled": true,
+          "channel": "your_channel"
+        },
+        {
+          "type": "beam",
+          "enabled": true,
+          "channel": "your_channel"
+        },
+        {
+          "type": "youtube",
+          "enabled": true,
+          "channel": "your_channel_id"
+        }
+      ]
+    },
+    {
+      "channel_id": 2,
+      "channel": "movies",
+      "type": "movies",
+      "enabled": true,
+      "liveWaitDelay": 60000,
+      "announce": [
+        {
+          "type": "discord",
+          "enabled": true,
+          "useRandomPoster": false,
+          "message": {
+            "prepend": "@everyone Now showing: ",
+            "append": "— <https://your-site.com/movies/>"
+          }
+        },
+        {
+          "type": "vk",
+          "enabled": true,
+          "useRandomPoster": true,
+          "removeOldPosts": true,
+          "removeCommentedPosts": false,
+          "message": {
+            "prepend": "Now showing:\n\n",
+            "append": "\n\nhttps://your-site.com/movies/",
+            "attachments": [ "https://your-site.com/movies/" ]
+          }
+        }
+      ],
+      "stream": [
+        {
+          "type": "twitch",
+          "enabled": true,
+          "channel": 12345
+        },
+        {
+          "type": "cybergame",
+          "enabled": true,
+          "primary": true,
+          "channel": "your_channel"
+        }
+      ]
+    }
+  ]
+}
