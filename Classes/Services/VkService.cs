@@ -42,7 +42,6 @@ namespace Announcer.Classes.Services
         public async Task<uint> Announce(string message, string posterPath, uint? previousPostId = null)
         {
             var attachments = this.config.Message.Attachements;
-            attachments.Add("https://kraken.su/stream/");
 
             // Upload poster
             if (string.IsNullOrEmpty(posterPath) == false)

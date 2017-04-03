@@ -10,11 +10,17 @@ namespace Announcer
 {
     public class Config
     {
+        [JsonProperty("streamRestartDelay")]
+        // Minutes
+        public uint StreamRestartDelay { get; set; } = 30;
+
         [JsonProperty("delay")]
-        public uint Delay { get; set; }
+        // Seconds
+        public uint Delay { get; set; } = 15000;
 
         [JsonProperty("cacheUpdateDelay")]
-        public uint CacheUpdateDelay { get; set; }
+        // Days
+        public uint CacheUpdateDelay { get; set; } = 7;
 
         [JsonProperty("debug")]
         public bool Debug { get; set; } = false;

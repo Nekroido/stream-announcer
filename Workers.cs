@@ -36,8 +36,7 @@ namespace Announcer
                 if (primaryChannel == null)
                 {
                     Logger.Log($"No primary channel set for {config.Channel}. Using the first one.", Logger.Severity.error);
-                    sleepDelay = config.LiveWaitDelay;
-                    goto SKIP_TO_WAIT;
+                    primaryChannel = config.Stream.First();
                 }
 
                 stopWatch.Start();
@@ -81,6 +80,13 @@ namespace Announcer
                 {
                     callWebhook = true;
                     await dashboard.Save();
+                }
+
+                if (isPrevious == false && dashboard.IsLive)
+                {
+                    // Additional check if stream was restarted after a delay with the same dashboard
+                    var diff = DateTime.Now - previousDashboard.BroadcastEnd;
+                    isPrevious = diff?.TotalMinutes >= Config.Load().StreamRestartDelay;
                 }
 
                 if (previousDashboard != null && (isPrevious == false || dashboard.Viewers != previousDashboard.Viewers || dashboard.IsLive != previousDashboard.IsLive))
@@ -140,7 +146,7 @@ namespace Announcer
                     dashboard.BroadcastEnd = null;
                 }
 
-                dashboard.MaxViewers = Math.Max(dashboard.Viewers, previousDashboard.MaxViewers);
+                dashboard.MaxViewers = Math.Max(dashboard.Viewers, previousDashboard?.MaxViewers == null ? 0 : previousDashboard.MaxViewers);
 
                 await dashboard.Save();
 

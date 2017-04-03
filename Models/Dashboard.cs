@@ -35,7 +35,7 @@ namespace Announcer.Models
 
         [JsonProperty("max_viewers")]
         public uint MaxViewers { get; set; } = 0;
-        
+
         [JsonProperty("vk_post_id")]
         public uint? VkPostId { get; set; } = null;
 
@@ -72,7 +72,7 @@ namespace Announcer.Models
             if (previousDashboard == null)
                 return false;
             else if (this.Title == previousDashboard.Title)
-                return this.Media == previousDashboard.Media || Config.Load().IgnoredGames.IndexOf(this.Media) > -1;
+                return (this.Media == previousDashboard.Media || Config.Load().IgnoredGames.IndexOf(this.Media) > -1);
             else return false;
         }
     }

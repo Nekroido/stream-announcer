@@ -1,4 +1,5 @@
 ﻿{
+  "streamRestartDelay": 30,
   "delay": 15000,
   "cacheUpdateDelay": 7,
   "debug": true,
@@ -113,6 +114,12 @@
           "type": "discord",
           "enabled": true,
           "useRandomPoster": false,
+          "configOverride": {
+            "type": "announce",
+            "name": "discord",
+            "token": "-webhook token here-",
+            "id": 12345
+          },
           "message": {
             "prepend": "@everyone Now showing: ",
             "append": "— <https://your-site.com/movies/>"
@@ -124,6 +131,12 @@
           "useRandomPoster": true,
           "removeOldPosts": true,
           "removeCommentedPosts": false,
+          "configOverride": {
+            "type": "announce",
+            "name": "vk",
+            "token": "-auth token here-",
+            "id": 12345
+          },
           "message": {
             "prepend": "Now showing:\n\n",
             "append": "\n\nhttps://your-site.com/movies/",
