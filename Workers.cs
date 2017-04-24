@@ -82,7 +82,7 @@ namespace Announcer
                     await dashboard.Save();
                 }
 
-                if (isPrevious == true && dashboard.IsLive && previousDashboard != null)
+                if (isPrevious == true && dashboard.IsLive && previousDashboard?.BroadcastEnd != null)
                 {
                     // Additional check if stream was restarted after a delay with the same dashboard
                     var diff = DateTime.Now - previousDashboard.BroadcastEnd;
